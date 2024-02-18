@@ -15,6 +15,7 @@
     "db:seed": "prisma db seed"
   },
   "dependencies": {
+    "@heroicons/react": "^2.1.1",
     "@mdxeditor/editor": "^2.9.0",
     "@prisma/client": "5.9.1",
     "@remix-run/css-bundle": "^2.6.0",
