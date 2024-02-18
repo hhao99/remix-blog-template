@@ -33,6 +33,7 @@ export default function IndexPage( ) {
                 <div>
                     <label htmlFor='content'>Content:
                        <textarea name='content'
+                       defaultValue={post.content}
                        className='w-full flex-1 rounded-md border-2 border-blue-600 px-3 py-2 leading-6'
                         cols={60} rows={12} />
 
@@ -62,7 +63,6 @@ export default function IndexPage( ) {
 export async function action({request}) {
     const formData = await request.formData()
     const post = Object.fromEntries(formData)
-    console.dir(post, {depth: null})
     await db.post.update({
         where: { id: parseInt(post.id) },
         data: {

@@ -1,13 +1,13 @@
 import { PrismaClient } from '@prisma/client'
-import { singleton } from './singleton.server'
 
-let db: PrismaClient
 
-if(process.env.NODE_ENV === 'production') {
-    db = new PrismaClient()
+const globalForPrisma = global as unknown as { db: PrismaClient}
+
+export const db = globalForPrisma.db || new PrismaClient()
+
+if(process.env.NODE_ENV !== 'production') {
+    globalForPrisma.db = db
 }
-else {
-    db = singleton("prisma", ()=> new PrismaClient() )
-}
+
 
 export default db
