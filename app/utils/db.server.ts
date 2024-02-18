@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client'
 import { singleton } from './singleton.server'
 
-let db
+let db: PrismaClient
 
 if(process.env.NODE_ENV === 'production') {
     db = new PrismaClient()

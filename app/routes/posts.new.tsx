@@ -36,9 +36,12 @@ export default function IndexPage( ) {
                         <textarea name='content' cols={60} rows={8}>test content</textarea>
                     </label>
                 </div>
-                <div>
-                    <button>save</button>
-                    <button>cancel</button>
+                <div className='grid grid-cols-3 gap-4'>
+                    <div className='grid-span-2'></div>
+                    <div className='grid gap-1'>
+                        <button>save</button>
+                        <button>cancel</button>
+                    </div>
                 </div>
             </Form>
         </div>
@@ -49,11 +52,11 @@ export async function action({request}) {
     const formData = await request.formData()
     const post = Object.fromEntries(formData)
     console.dir(post, {depth: null})
-    await db.post.create({
+    const _post = await db.post.create({
         data: {
             ...post,
             userId: parseInt(post.userId)
         }
     })
-    return redirect('/posts/new')
+    return redirect(`/posts/${_post.id}/edit`)
 }

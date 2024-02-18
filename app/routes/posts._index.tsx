@@ -9,14 +9,9 @@ export async function loader() {
 export default function IndexPage( ) {
     const { users, posts } = useLoaderData()
     return (
-        <>
-           
-            <div>
-                {users.length} users.
-            </div>
-            <div>
-                {posts.length} posts.
-            </div>
-        </>
+        <div>
+           <h1>Welcome to my personal blog!</h1>
+            
+        </div>
     )
 }

@@ -32,7 +32,9 @@ export default function IndexPage( ) {
                 </div>
                 <div>
                     <label htmlFor='content'>Content:
-                       
+                       <textarea name='content'
+                       className='w-full flex-1 rounded-md border-2 border-blue-600 px-3 py-2 leading-6'
+                        cols={60} rows={20} />
 
 
                     </label>
