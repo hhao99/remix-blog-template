@@ -1,15 +1,9 @@
 
-export default function Button({props,children}) {
+export default function Button({type,props,children}) {
+    const styles = type === 'smalll'?'ml-2 btn btn-sm btn-circle'
+        : 'ml-2 btn btn-neutral'
     return (
-        <button className='ml-2 btn btn-neutral' {...props}>
-            {children}
-        </button>
-    )
-}
-
-export function Button_small({props,children}) {
-    return (
-        <button className='ml-2 btn btn-sm btn-circle'>
+        <button className={styles} {...props}>
             {children}
         </button>
     )

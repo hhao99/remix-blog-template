@@ -1,11 +1,13 @@
 import { Form, useLoaderData, redirect } from "@remix-run/react"
 import db from '~/utils/db.server'
 import Button from '~/components/button'
+import { requireUser } from "~/utils/session.server"
 
-export async function loader({params}) {
+export async function loader({params,request}) {
     const id = parseInt(params.id)
-    const post = await db.post.findUnique({ where: { id }}) 
-    const user = await db.user.findUnique({ where: {id: post.userId }})
+    const user = await requireUser(request)
+    const post = await db.post.findUnique({ where: { id }})
+    if( user.id !== post.userId) { throw new Response("Not the author", { status: 401}) }
     return { user, post }
 }
 
